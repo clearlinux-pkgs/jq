@@ -4,7 +4,7 @@
 #
 Name     : jq
 Version  : 1.5
-Release  : 2
+Release  : 3
 URL      : https://github.com/stedolan/jq/releases/download/jq-1.5/jq-1.5.tar.gz
 Source0  : https://github.com/stedolan/jq/releases/download/jq-1.5/jq-1.5.tar.gz
 Summary  : Command-line JSON processor
@@ -17,6 +17,7 @@ BuildRequires : bison
 BuildRequires : flex
 BuildRequires : valgrind
 Patch1: cve-2015-8863.patch
+Patch2: cve-2016-4074.patch
 
 %description
 jq is a command-line JSON processor
@@ -59,13 +60,14 @@ lib components for the jq package.
 %prep
 %setup -q -n jq-1.5
 %patch1 -p1
+%patch2 -p1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1494348057
+export SOURCE_DATE_EPOCH=1494598564
 export CFLAGS="$CFLAGS -fstack-protector-strong "
 export FCFLAGS="$CFLAGS -fstack-protector-strong "
 export FFLAGS="$CFLAGS -fstack-protector-strong "
@@ -81,7 +83,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check || :
 
 %install
-export SOURCE_DATE_EPOCH=1494348057
+export SOURCE_DATE_EPOCH=1494598564
 rm -rf %{buildroot}
 %make_install
 
