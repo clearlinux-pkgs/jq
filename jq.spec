@@ -4,7 +4,7 @@
 #
 Name     : jq
 Version  : 1.5
-Release  : 3
+Release  : 4
 URL      : https://github.com/stedolan/jq/releases/download/jq-1.5/jq-1.5.tar.gz
 Source0  : https://github.com/stedolan/jq/releases/download/jq-1.5/jq-1.5.tar.gz
 Summary  : Command-line JSON processor
@@ -67,7 +67,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1494598564
+export SOURCE_DATE_EPOCH=1506006801
 export CFLAGS="$CFLAGS -fstack-protector-strong "
 export FCFLAGS="$CFLAGS -fstack-protector-strong "
 export FFLAGS="$CFLAGS -fstack-protector-strong "
@@ -83,7 +83,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check || :
 
 %install
-export SOURCE_DATE_EPOCH=1494598564
+export SOURCE_DATE_EPOCH=1506006801
 rm -rf %{buildroot}
 %make_install
 
