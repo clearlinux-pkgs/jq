@@ -1,5 +1,6 @@
-Configure miss: oniguruma.h usability
-Configure miss: oniguruma.h presence
-Configure miss: oniguruma.h
+Configure miss: shlwapi.h usability
+Configure miss: shlwapi.h presence
+Configure miss: shlwapi.h
 Configure miss: bundle
 Configure miss: _isatty
+Configure miss: pow10 in -lm

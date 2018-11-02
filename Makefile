@@ -1,5 +1,5 @@
 PKG_NAME := jq
-URL := https://github.com/stedolan/jq/releases/download/jq-1.5/jq-1.5.tar.gz
-
+URL = https://github.com/stedolan/jq/archive/jq-1.6.tar.gz
+ARCHIVES = 
 
 include ../common/Makefile.common
