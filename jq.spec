@@ -4,7 +4,7 @@
 #
 Name     : jq
 Version  : 1.6
-Release  : 7
+Release  : 8
 URL      : https://github.com/stedolan/jq/archive/jq-1.6.tar.gz
 Source0  : https://github.com/stedolan/jq/archive/jq-1.6.tar.gz
 Summary  : Command-line JSON processor
