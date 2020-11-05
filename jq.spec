@@ -4,7 +4,7 @@
 #
 Name     : jq
 Version  : 1.6
-Release  : 8
+Release  : 9
 URL      : https://github.com/stedolan/jq/archive/jq-1.6.tar.gz
 Source0  : https://github.com/stedolan/jq/archive/jq-1.6.tar.gz
 Summary  : Command-line JSON processor
@@ -26,7 +26,6 @@ jq is a command-line JSON processor
 Summary: bin components for the jq package.
 Group: Binaries
 Requires: jq-license = %{version}-%{release}
-Requires: jq-man = %{version}-%{release}
 
 %description bin
 bin components for the jq package.
@@ -38,6 +37,7 @@ Group: Development
 Requires: jq-lib = %{version}-%{release}
 Requires: jq-bin = %{version}-%{release}
 Provides: jq-devel = %{version}-%{release}
+Requires: jq = %{version}-%{release}
 
 %description dev
 dev components for the jq package.
@@ -79,32 +79,34 @@ man components for the jq package.
 
 %prep
 %setup -q -n jq-jq-1.6
+cd %{_builddir}/jq-jq-1.6
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-export LANG=C
-export SOURCE_DATE_EPOCH=1541138566
-export CFLAGS="$CFLAGS -fstack-protector-strong -mzero-caller-saved-regs=used "
-export FCFLAGS="$CFLAGS -fstack-protector-strong -mzero-caller-saved-regs=used "
-export FFLAGS="$CFLAGS -fstack-protector-strong -mzero-caller-saved-regs=used "
-export CXXFLAGS="$CXXFLAGS -fstack-protector-strong -mzero-caller-saved-regs=used "
+export LANG=C.UTF-8
+export SOURCE_DATE_EPOCH=1604542350
+export GCC_IGNORE_WERROR=1
+export CFLAGS="$CFLAGS -fno-lto -fstack-protector-strong -mzero-caller-saved-regs=used "
+export FCFLAGS="$FFLAGS -fno-lto -fstack-protector-strong -mzero-caller-saved-regs=used "
+export FFLAGS="$FFLAGS -fno-lto -fstack-protector-strong -mzero-caller-saved-regs=used "
+export CXXFLAGS="$CXXFLAGS -fno-lto -fstack-protector-strong -mzero-caller-saved-regs=used "
 %reconfigure --disable-static
 make  %{?_smp_mflags}
 
 %check
-export LANG=C
+export LANG=C.UTF-8
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-make VERBOSE=1 V=1 %{?_smp_mflags} check || :
+make %{?_smp_mflags} check || :
 
 %install
-export SOURCE_DATE_EPOCH=1541138566
+export SOURCE_DATE_EPOCH=1604542350
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/jq
-cp COPYING %{buildroot}/usr/share/package-licenses/jq/COPYING
+cp %{_builddir}/jq-jq-1.6/COPYING %{buildroot}/usr/share/package-licenses/jq/127289c8bb17ec76d9374c0d17ea2f85b79dd340
 %make_install
 
 %files
@@ -116,7 +118,8 @@ cp COPYING %{buildroot}/usr/share/package-licenses/jq/COPYING
 
 %files dev
 %defattr(-,root,root,-)
-/usr/include/*.h
+/usr/include/jq.h
+/usr/include/jv.h
 /usr/lib64/libjq.so
 
 %files doc
@@ -130,7 +133,7 @@ cp COPYING %{buildroot}/usr/share/package-licenses/jq/COPYING
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/jq/COPYING
+/usr/share/package-licenses/jq/127289c8bb17ec76d9374c0d17ea2f85b79dd340
 
 %files man
 %defattr(0644,root,root,0755)
