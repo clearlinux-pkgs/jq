@@ -1,8 +1,18 @@
 Configure miss: Python dependencies
+Configure miss: Python dependencies
+Configure miss: __exp10 in -lm
 Configure miss: __exp10 in -lm
 Configure miss: _isatty
+Configure miss: _isatty
+Configure miss: gcc option to enable large file support
+Configure miss: gcc option to enable large file support
+Configure miss: pipenv
 Configure miss: pipenv
 Configure miss: pow10 in -lm
+Configure miss: pow10 in -lm
+Configure miss: shlwapi.h
 Configure miss: shlwapi.h
 Configure miss: sys/cygwin.h
+Configure miss: sys/cygwin.h
+Configure miss: x86_64-generic-linux-gnu-file
 Configure miss: x86_64-generic-linux-gnu-file
